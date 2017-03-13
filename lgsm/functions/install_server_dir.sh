@@ -17,11 +17,11 @@ if [ -d "${filesdir}" ]; then
 fi
 pwd
 echo ""
-if [ -z "${autoinstall}" ]; then
-	if ! fn_prompt_yn "Continue?" Y; then
-		exit
-	fi
-fi
+# if [ -z "${autoinstall}" ]; then
+# 	if ! fn_prompt_yn "Continue?" Y; then
+#		exit
+#	fi
+#fi
 if [ ! -d "${filesdir}" ]; then
 	mkdir -v "${filesdir}"
 fi
