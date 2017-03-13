@@ -51,13 +51,13 @@ fn_default_config_remote(){
 # PASSWORD to random password
 fn_set_config_vars(){
 	if [ -f "${servercfgfullpath}" ]; then
-		random=$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 8 | tr -d '\n'; echo)
+		random=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w30 | head -n1)
 		servername="LinuxGSM"
-		rconpass="admin$random"
-		echo "changing hostname."
+		rconpass="cx$random"
+		echo "generated rcon is cx$random"
 		fn_script_log_info "changing hostname."
 		sleep 1
-		sed -i "s/SERVERNAME/${servername}/g" "${servercfgfullpath}"
+		# sed -i "s/SERVERNAME/${servername}/g" "${servercfgfullpath}"
 		echo "changing rcon/admin password."
 		fn_script_log_info "changing rcon/admin password."
 		sed -i "s/ADMINPASSWORD/${rconpass}/g" "${servercfgfullpath}"
